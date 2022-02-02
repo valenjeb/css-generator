@@ -59,9 +59,10 @@ body {
 Instead of outputting the compiled css, it can be saved to a file:
 
 ```php
+$minify = true; // Will override minify option if already set
 $override = true; // Override if file exists
 $mkdir    = true; // Creates directory recursively if not already exists
-$css->save('path/to/compiled.css', $override, $mkdir);
+$css->save('path/to/compiled.css', $minify, $override, $mkdir);
 ```
 
 ### Import rules from another instance of CSS class
