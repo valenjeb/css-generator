@@ -5,16 +5,17 @@ namespace Devly\CssGenerator\Concerns;
 use BadMethodCallException;
 use Devly\CssGenerator\CSS;
 use Devly\CssGenerator\Media;
+use Devly\CssGenerator\Supports;
 
 trait HasParent
 {
     /**
-     * @var CSS|Media|null
+     * @var CSS|Media|Supports|null
      */
     protected $parent;
 
     /**
-     * @return CSS|Media|null
+     * @return CSS|Media|Supports|null
      */
     public function getParentContext()
     {

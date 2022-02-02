@@ -89,9 +89,21 @@ class CSS
         return $this->rules[] = new Media($queries, $rules, $this);
     }
 
-    public function compile(): string
+    /**
+     * @param string $feature
+     * @param CSS|Media|array|null $rules
+     *
+     * @return Supports
+     */
+    public function supports(string $feature, $rules = null): Supports
     {
-        $line_break = $this->minify ? '' : "\n";
+        return $this->rules[] = new Supports($feature, $rules, $this);
+    }
+
+    public function compile(?bool $minify = null): string
+    {
+        $minify     = is_null($minify) ? $this->minify : $minify;
+        $line_break = $minify ? '' : "\n";
         $output     = '';
 
         if (isset($this->charset)) {
@@ -112,14 +124,14 @@ class CSS
 
         if (isset($this->font_face)) {
             foreach ($this->font_face as $font_face) {
-                $output .= (empty($output) ? '' : $line_break) . $font_face->css($this->minify) . $line_break;
+                $output .= (empty($output) ? '' : $line_break) . $font_face->css($minify) . $line_break;
             }
         }
 
         $rules = '';
         if (isset($this->rules)) {
             foreach ($this->rules as $selector) {
-                $rules .= (empty($rules) ? '' : $line_break) . $selector->css($this->minify) . $line_break;
+                $rules .= (empty($rules) ? '' : $line_break) . $selector->css($minify) . $line_break;
             }
         }
 
@@ -135,7 +147,7 @@ class CSS
      *
      * @return bool
      */
-    public function save(string $path, bool $override = false, bool $mkdir = false): bool
+    public function save(string $path, ?bool $minify = null, bool $override = false, bool $mkdir = false): bool
     {
         $file_exists = file_exists($path);
         if ($file_exists && ! $override) {
@@ -153,7 +165,7 @@ class CSS
         }
 
         $file    = fopen($path, 'w');
-        $results = fwrite($file, $this->compile()) !== false;
+        $results = fwrite($file, $this->compile($minify)) !== false;
 
         fclose($file);
 
@@ -193,7 +205,7 @@ class CSS
      *
      * @return CSS
      */
-    protected function minify(bool $minify): CSS
+    public function minify(bool $minify = true): CSS
     {
         $this->minify = $minify;
 

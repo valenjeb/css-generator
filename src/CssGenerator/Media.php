@@ -18,9 +18,9 @@ class Media
     /**
      * @param string|string[] $queries
      * @param CSS|Selector[]|null $rules
-     * @param CSS|null $parent
+     * @param CSS|Supports|null $parent
      */
-    public function __construct($queries, $rules = null, ?CSS $parent = null)
+    public function __construct($queries, $rules = null, $parent = null)
     {
         $this->queries = is_array($queries) ? $queries : [$queries];
 
@@ -46,7 +46,10 @@ class Media
         return $output . '}';
     }
 
-    public function endMedia(): ?CSS
+    /**
+     * @return CSS|Media|null
+     */
+    public function endMedia()
     {
         return $this->getParentContext();
     }

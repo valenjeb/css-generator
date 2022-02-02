@@ -8,7 +8,7 @@
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="PHP Boilerplate Test Suite">
+        <testsuite name="CSS Generator Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

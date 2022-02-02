@@ -21,7 +21,7 @@ class Selector
     /**
      * @param string|string[] $selector
      * @param int[]|string[] $rules
-     * @param CSS|Media|null $parent
+     * @param CSS|Media|Supports|null $parent
      */
     public function __construct($selector, array $rules = [], $parent = null)
     {
@@ -94,7 +94,7 @@ class Selector
     }
 
     /**
-     * @return CSS|Media|null
+     * @return CSS|Media|Supports|null
      */
     public function endSelector()
     {

@@ -77,9 +77,9 @@ class CssGeneratorTest extends TestCase
                     ->fontSize('1rem')
             ->endMedia();
 
-        $minify = false;
+        $minify   = false;
         $override = true;
-        $mkdir = true;
+        $mkdir    = true;
         $this->assertTrue($css->save(__DIR__ . '/generated/css/style.css', $minify, $override, $mkdir));
     }
 
@@ -93,5 +93,22 @@ class CssGeneratorTest extends TestCase
 
         $expected = "@font-face {\n    font-family: Arial;\n    src: url('path/to/arial.ttf');\n    font-weight: bold;\n}";
         $this->assertEquals($expected, trim($css->compile()));
+    }
+
+    public function testSupports(): void
+    {
+        $css = CSS::new()
+            ->supports('display: table-cell')
+                ->selector('body', ['font-size' => '16px'])
+            ->endSupports()
+            ->supports('display: table-cell')
+            ->andSupports('display: list-item')
+            ->andSupports('not (display: flex)')
+            ->notSupports('display: contents')
+                ->media('screen')
+                    ->selector('body', ['font-size' => '16px'])
+                ->endMedia();
+        echo $css->compile();
+//        $this->assertEquals('', trim($css->compile()));
     }
 }
