@@ -77,8 +77,10 @@ class CssGeneratorTest extends TestCase
                     ->fontSize('1rem')
             ->endMedia();
 
-
-        $this->assertTrue($css->save(__DIR__ . '/generated/css/style.css', true, true));
+        $minify = false;
+        $override = true;
+        $mkdir = true;
+        $this->assertTrue($css->save(__DIR__ . '/generated/css/style.css', $minify, $override, $mkdir));
     }
 
     public function testFontFace(): void

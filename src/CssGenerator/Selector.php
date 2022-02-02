@@ -101,6 +101,17 @@ class Selector
         return $this->getParentContext();
     }
 
+    /**
+     * Specifies the display behavior
+     *
+     * The display CSS property sets whether an element is treated
+     * as a block or inline element and the layout used for its
+     * children, such as flow layout, grid or flex.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function display(string $value): Selector
     {
         return $this->addRule('display', $value);
@@ -123,36 +134,106 @@ class Selector
         return $this;
     }
 
+    /**
+     * Modifies the behavior of the flex-wrap property
+     *
+     * The CSS align-content property sets the distribution of space
+     * between and around content items along a flexbox's cross-axis
+     * or a grid's block axis.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function alignContent(string $value): Selector
     {
         return $this->addRule('align-content', $value);
     }
 
+    /**
+     * specifies the default alignment for items inside the flexible container
+     *
+     * The CSS align-items property sets the align-self value on all
+     * direct children as a group. In Flexbox, it controls the alignment
+     * of items on the Cross Axis. In Grid Layout, it controls the
+     * alignment of items on the Block Axis within their grid area.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function alignItems(string $value): Selector
     {
         return $this->addRule('align-items', $value);
     }
 
+    /**
+     * Specifies the alignment for the selected item inside the flexible container
+     *
+     * The align-self CSS property overrides a grid or flex item's
+     * align-items value. In Grid, it aligns the item inside the grid
+     * area. In Flexbox, it aligns the item on the cross axis.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function alignSelf(string $value): Selector
     {
         return $this->addRule('align-self', $value);
     }
 
+    /**
+     * Resets all properties
+     *
+     * The all shorthand CSS property resets all of an element's properties
+     * except unicode-bidi, direction, and CSS Custom Properties. It can
+     * set properties to their initial or inherited values, or to the values
+     * specified in another stylesheet origin.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function all(string $value): Selector
     {
         return $this->addRule('all', $value);
     }
 
+    /**
+     * The animation shorthand CSS property applies an animation between styles
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function animation(string $value): Selector
     {
         return $this->addRule('animation', $value);
     }
 
+    /**
+     * The animation-delay CSS property specifies the amount of time to wait from
+     * applying the animation to an element before beginning to perform the animation.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function animationDelay(string $value): Selector
     {
         return $this->addRule('animation-delay', $value);
     }
 
+    /**
+     * The animation-direction CSS property sets whether an animation should play
+     * forward, backward, or alternate back and forth between playing the sequence
+     * forward and backward.
+     *
+     * @param string $value
+     *
+     * @return Selector
+     */
     public function animationDuration(string $value): Selector
     {
         return $this->addRule('animation-duration', $value);
