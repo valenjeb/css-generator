@@ -1,0 +1,43 @@
+{
+  "name": "devly/css-generator",
+  "description": "Generate CSS on the fly using PHP",
+  "type": "project",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Valentin Jebelev",
+      "email": "vala.jebelev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Devly\\CssGenerator\\": "src/CssGenerator"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Devly\\CssGenerator\\Tests\\": "tests"
+    }
+  },
+  "require": {
+    "php": "^7.4"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+    "squizlabs/php_codesniffer": "^3.6",
+    "slevomat/coding-standard": "^7.0",
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^1.2"
+  },
+  "scripts": {
+    "lint": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+    "phpstan": "@php ./vendor/bin/phpstan",
+    "test": "@php ./vendor/bin/phpunit"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
