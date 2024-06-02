@@ -38,3 +38,5 @@ Temporary Items
 *.cache
 
 .idea
+
+tests/generated/
