@@ -22,7 +22,7 @@
     }
   },
   "require": {
-    "php": "^7.4"
+    "php": ">=7.4"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
@@ -38,6 +38,9 @@
     "test": "@php ./vendor/bin/phpunit"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
