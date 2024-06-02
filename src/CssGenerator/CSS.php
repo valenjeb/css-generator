@@ -35,7 +35,7 @@ class CSS
         $this->minify($options['minify'] ?? false);
 
         $rules = $rules instanceof CSS ? $rules->getRules() : $rules;
-        if (! is_array($rules)) {
+        if (!is_array($rules)) {
             throw new InvalidArgumentException(sprintf(
                 '%1$s constructor parameter must be an array or an instance of %1$s.',
                 self::class
@@ -97,7 +97,7 @@ class CSS
      */
     public function supports(string $feature, $rules = null): Supports
     {
-        return $this->rules[] = new Supports($feature, $rules, $this);
+        return $this->rules[] = new Supports($feature, $rules ?? [], $this);
     }
 
     public function compile(?bool $minify = null): string
@@ -110,14 +110,14 @@ class CSS
             $output .= sprintf('@charset "%s";%s', $this->charset, $line_break);
         }
 
-        if (! empty($this->imports)) {
+        if (!empty($this->imports)) {
             foreach ($this->imports as $import_statement) {
                 $output .= $import_statement . $line_break;
             }
 
             $output .= $line_break;
         } else {
-            if (! empty($output)) {
+            if (!empty($output)) {
                 $output .= $line_break;
             }
         }
@@ -150,14 +150,14 @@ class CSS
     public function save(string $path, ?bool $minify = null, bool $override = false, bool $mkdir = false): bool
     {
         $file_exists = file_exists($path);
-        if ($file_exists && ! $override) {
+        if ($file_exists && !$override) {
             return false;
         }
 
         $path_info = pathinfo($path);
 
-        if (! is_dir($path_info['dirname'])) {
-            if (! $mkdir) {
+        if (!is_dir($path_info['dirname'])) {
+            if (!$mkdir) {
                 throw new RuntimeException(sprintf('Path "%s" must be present in order to save a css file.', $path_info['dirname']));
             }
 
